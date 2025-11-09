@@ -1,3 +1,4 @@
+ HEAD
 # 🇰🇪 Umoja AI - Kenyan Language AI Platform
 
 A FastAPI-based backend for processing and working with Kenyan local languages.
@@ -162,3 +163,6 @@ This is a local Kenyan AI project. Contributions are welcome!
 ## 📄 License
 
 [Add your license here]
+
+# Umoja_AI
+ 59900c9e231ff882059816886f26a57cd3892368
