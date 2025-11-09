@@ -1,0 +1,24 @@
+{
+  "capabilities": {
+    "swahili": "Mimi ni Umoja AI, msaidizi wa lugha za Kenya. Ninaweza:\n- Kutambua lugha unayotumia\n- Kutafsiri maneno kati ya lugha za Kenya\n- Kubadilisha maandishi kuwa sauti\n- Kukusaidia kujifunza lugha za Kenya",
+    "english": "I am Umoja AI, a Kenyan language assistant. I can:\n- Detect the language you're using\n- Translate between Kenyan languages\n- Convert text to speech\n- Help you learn Kenyan languages",
+    "kikuyu": "Niĩ nĩ Umoja AI, mũteithia wa thiomi cia Kenya. Ndĩhota:\n- Kũmenya thiomi ũratumĩra\n- Kũtaũra ciugo gatagatĩ ka thiomi cia Kenya"
+  },
+  "kenya_info": {
+    "swahili": "Kenya ni nchi yenye utamaduni tajiri na lugha nyingi. Lugha kuu ni Kiswahili na Kiingereza, lakini kuna lugha zaidi ya 60 za makabila. Umoja AI inasaidia kulinda na kukuza lugha hizi za asili.",
+    "english": "Kenya is a country with rich culture and many languages. The main languages are Swahili and English, but there are over 60 tribal languages. Umoja AI helps preserve and promote these indigenous languages."
+  },
+  "language_learning": {
+    "swahili": "Nataka kukusaidia kujifunza! Je, unataka kujifunza lugha gani? Nina data ya Kiswahili, Kikuyu, Kiluhya, Kiluo, na Kikamba.",
+    "english": "I'd love to help you learn! Which language would you like to learn? I have data for Swahili, Kikuyu, Luhya, Luo, and Kamba."
+  },
+  "default": {
+    "swahili": "Samahani, sijaelewa vizuri. Je, unaweza kuuliza kwa njia nyingine?",
+    "english": "I'm sorry, I didn't quite understand that. Could you please rephrase your question?",
+    "kikuyu": "Ũramaitha, ndĩamenyete wega. Wahota kũũria na njĩra ĩngĩ?"
+  },
+  "help": {
+    "swahili": "Unaweza kuniuliza kuhusu:\n- Tafsiri za lugha\n- Kujifunza maneno mapya\n- Habari kuhusu Kenya\n- Jinsi ya kutumia Umoja AI",
+    "english": "You can ask me about:\n- Language translations\n- Learning new words\n- Information about Kenya\n- How to use Umoja AI"
+  }
+}

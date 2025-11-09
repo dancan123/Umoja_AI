@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umoja AI - Kenyan Language AI Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .lang-badge {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .api-link {
+            display: inline-block;
+            background: #764ba2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .api-link:hover {
+            transform: translateY(-2px);
+        }
+        .features {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+        .feature {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .feature:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🇰🇪 Umoja AI</h1>
+        <p class="subtitle">AI Platform for Kenyan Local Languages</p>
+        
+        <div class="languages">
+            <span class="lang-badge">🗣️ Swahili</span>
+            <span class="lang-badge">🗣️ English</span>
+            <span class="lang-badge">🗣️ Kikuyu</span>
+            <span class="lang-badge">🗣️ Luhya</span>
+            <span class="lang-badge">🗣️ Luo</span>
+            <span class="lang-badge">🗣️ Kamba</span>
+        </div>
+        
+        <a href="/docs" class="api-link" style="margin-right: 10px;">📚 API Documentation</a>
+        <a href="/static/chat.html" class="api-link" style="background: #28a745;">💬 Try Chat Now</a>
+        
+        <div class="features">
+            <h3 style="margin-bottom: 15px; color: #333;">Features</h3>
+            <div class="feature">Language Detection</div>
+            <div class="feature">Text-to-Speech</div>
+            <div class="feature">Translation Services</div>
+            <div class="feature">Multi-language Support</div>
+        </div>
+    </div>
+</body>
+</html>

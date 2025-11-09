@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umoja AI Chat - Kenyan Language Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            max-height: 700px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .chat-header h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .chat-header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .language-indicator {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.85em;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .message-time {
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: #667eea;
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .send-button:hover {
+            transform: scale(1.05);
+        }
+
+        .send-button:active {
+            transform: scale(0.95);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 12px 18px;
+            background: white;
+            border-radius: 18px;
+            width: fit-content;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .quick-action-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.2s;
+        }
+
+        .quick-action-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .welcome-message h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .welcome-message p {
+            margin-bottom: 10px;
+        }
+
+        .example-questions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .example-question {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .example-question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .example-question strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .example-question small {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>🇰🇪 Umoja AI</h1>
+            <p>Your Kenyan Language Assistant</p>
+            <div class="language-indicator" id="languageIndicator">
+                🌍 Language: Detecting...
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="welcome-message">
+                <h2>Karibu! Welcome! 👋</h2>
+                <p>I'm Umoja AI, your assistant for Kenyan languages.</p>
+                <p>I can help you with Swahili, English, Kikuyu, Luo, Luhya, and Kamba.</p>
+                
+                <div class="example-questions">
+                    <div class="example-question" onclick="sendQuickMessage('Habari')">
+                        <strong>🗣️ Swahili</strong>
+                        <small>Habari (Hello)</small>
+                    </div>
+                    <div class="example-question" onclick="sendQuickMessage('What can you do?')">
+                        <strong>❓ Capabilities</strong>
+                        <small>What can you do?</small>
+                    </div>
+                    <div class="example-question" onclick="sendQuickMessage('Tell me about Kenya')">
+                        <strong>🇰🇪 Kenya Info</strong>
+                        <small>Tell me about Kenya</small>
+                    </div>
+                    <div class="example-question" onclick="sendQuickMessage('Nisaidie kujifunza')">
+                        <strong>📚 Learn</strong>
+                        <small>Help me learn</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <div class="quick-actions">
+                <button class="quick-action-btn" onclick="sendQuickMessage('Habari')">👋 Habari</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('Help')">❓ Help</button>
+                <button class="quick-action-btn" onclick="sendQuickMessage('Asante')">🙏 Asante</button>
+            </div>
+            <div class="chat-input-wrapper">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="messageInput" 
+                    placeholder="Type your message... (Andika ujumbe wako...)"
+                    onkeypress="handleKeyPress(event)"
+                >
+                <button class="send-button" id="sendButton" onclick="sendMessage()">
+                    Send
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let sessionId = localStorage.getItem('umoja_session_id') || null;
+        let currentLanguage = 'en';
+
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function formatTime(date) {
+            return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function addMessage(content, isUser = false, language = null) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const welcomeMessage = messagesContainer.querySelector('.welcome-message');
+            if (welcomeMessage) {
+                welcomeMessage.remove();
+            }
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            const now = new Date();
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    ${content}
+                    <div class="message-time">${formatTime(now)}</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            if (language && !isUser) {
+                updateLanguageIndicator(language);
+            }
+        }
+
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="typing-indicator active">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function updateLanguageIndicator(langCode) {
+            const langMap = {
+                'sw': 'Swahili 🗣️',
+                'en': 'English 🗣️',
+                'ki': 'Kikuyu 🗣️',
+                'luo': 'Luo 🗣️',
+                'lu': 'Luhya 🗣️',
+                'kam': 'Kamba 🗣️'
+            };
+            currentLanguage = langCode;
+            const indicator = document.getElementById('languageIndicator');
+            indicator.textContent = `🌍 Language: ${langMap[langCode] || 'Unknown'}`;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Disable input
+            input.disabled = true;
+            sendButton.disabled = true;
+
+            // Add user message
+            addMessage(message, true);
+            input.value = '';
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            try {
+                // Ensure we have a session ID
+                if (!sessionId) {
+                    sessionId = generateSessionId();
+                    localStorage.setItem('umoja_session_id', sessionId);
+                }
+
+                const response = await fetch('/api/chat/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        session_id: sessionId
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                
+                // Hide typing indicator
+                hideTypingIndicator();
+
+                // Add bot response
+                addMessage(data.response, false, data.detected_language);
+
+                // Update session ID if new
+                if (data.session_id) {
+                    sessionId = data.session_id;
+                    localStorage.setItem('umoja_session_id', sessionId);
+                }
+
+            } catch (error) {
+                hideTypingIndicator();
+                addMessage('Sorry, there was an error processing your message. Please try again.', false);
+                console.error('Error:', error);
+            } finally {
+                // Re-enable input
+                input.disabled = false;
+                sendButton.disabled = false;
+                input.focus();
+            }
+        }
+
+        function sendQuickMessage(message) {
+            const input = document.getElementById('messageInput');
+            input.value = message;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Focus input on load
+        window.onload = function() {
+            document.getElementById('messageInput').focus();
+        };
+    </script>
+</body>
+</html>

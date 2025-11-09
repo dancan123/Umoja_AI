@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+aiosqlite
+pydantic-settings
+python-multipart
+
+# AI and Language Processing
+transformers
+torch
+langdetect
+gtts
+
+# Optional: For future enhancements
+# sentence-transformers
+# huggingface-hub

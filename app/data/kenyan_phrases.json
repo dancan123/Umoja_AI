@@ -1,0 +1,48 @@
+{
+  "greetings": {
+    "swahili": [
+      {"phrase": "Habari", "translation": "Hello/How are you", "response": "Nzuri, asante"},
+      {"phrase": "Jambo", "translation": "Hello", "response": "Jambo"},
+      {"phrase": "Habari yako", "translation": "How are you", "response": "Nzuri sana"},
+      {"phrase": "Shikamoo", "translation": "Respectful greeting", "response": "Marahaba"},
+      {"phrase": "Mambo vipi", "translation": "What's up", "response": "Poa"}
+    ],
+    "kikuyu": [
+      {"phrase": "Wĩ mwega", "translation": "Hello", "response": "Nĩ mwega"},
+      {"phrase": "Ũrĩ atĩa", "translation": "How are you", "response": "Ndĩ mwega"}
+    ],
+    "luo": [
+      {"phrase": "Misawa", "translation": "Good morning", "response": "Oyawore"},
+      {"phrase": "Nadi", "translation": "Hello", "response": "Nadi"}
+    ],
+    "english": [
+      {"phrase": "Hello", "translation": "Hello", "response": "Hello! How can I help you?"},
+      {"phrase": "Hi", "translation": "Hi", "response": "Hi there!"},
+      {"phrase": "Good morning", "translation": "Good morning", "response": "Good morning!"}
+    ]
+  },
+  "common_questions": {
+    "swahili": [
+      {"question": "Unasemaje", "translation": "How do you say", "topic": "language_learning"},
+      {"question": "Jina lako ni nani", "translation": "What is your name", "topic": "introduction"},
+      {"question": "Unafanya nini", "translation": "What are you doing", "topic": "activity"},
+      {"question": "Unatoka wapi", "translation": "Where are you from", "topic": "origin"}
+    ],
+    "english": [
+      {"question": "What can you do", "translation": "What can you do", "topic": "capabilities"},
+      {"question": "How does this work", "translation": "How does this work", "topic": "help"},
+      {"question": "Tell me about Kenya", "translation": "Tell me about Kenya", "topic": "kenya_info"}
+    ]
+  },
+  "farewells": {
+    "swahili": [
+      {"phrase": "Kwaheri", "translation": "Goodbye", "response": "Kwaheri, safari njema"},
+      {"phrase": "Tutaonana", "translation": "See you later", "response": "Tutaonana"},
+      {"phrase": "Lala salama", "translation": "Good night", "response": "Lala salama"}
+    ],
+    "english": [
+      {"phrase": "Goodbye", "translation": "Goodbye", "response": "Goodbye! Come back soon!"},
+      {"phrase": "Bye", "translation": "Bye", "response": "Bye! Take care!"}
+    ]
+  }
+}
